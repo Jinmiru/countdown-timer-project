@@ -8,8 +8,8 @@ def countdown(t):
         time.sleep(1)
         t -= 1
     
-    print('Timer completed!')
+    print('타이머 완료!')
 
-t = input('Enter the time in seconds: ')
+t = input('원하는 시간을 입력하세요(초 단위): ')
 
 countdown(int(t))

@@ -1,15 +1,18 @@
 import time
 
-def countdown(t):
-    while t:
-        mins, secs = divmod(t, 60)
-        timer = '{:02d}:{:02d}'.format(mins, secs)
-        print(timer, end='\r')
-        time.sleep(1)
-        t -= 1
-    
-    print('타이머 완료!')
+def get_time_input():
+    while True:
+        time_input = input("원하는 시간을 '분:초' 또는 '초'로 입력해주세요: ").strip()
+        try:
+            if ":" in time_input:
+                minutes, seconds = map(int, time_input.split(":"))
+                return minutes, seconds
+            else:
+                seconds = int(time_input)
+                return 0, seconds
+        except ValueError:
+            print("유효하지 않은 입력입니다. 숫자를 입력해주세요.")
 
-t = input('원하는 시간을 입력하세요(초 단위): ')
-
-countdown(int(t))
+# Example usage
+minutes, seconds = get_time_input()
+print(f"Time entered: {minutes} minutes, {seconds} seconds")

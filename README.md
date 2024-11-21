@@ -38,17 +38,28 @@ Python 환경이 설치된 컴퓨터에서 실행합니다. <br>
 
 ## Mileston
 
+![image](https://github.com/user-attachments/assets/c014ffc1-b508-476b-a32b-48f46d64a37e)
+
 <br>
 
 ## Opne 상태인 Issue
+
+![image](https://github.com/user-attachments/assets/8eb9330c-7e7b-431b-93bc-cc7f2a8f27f5)
+
 
 <br>
 
 ## Closed 상태인 Issue
 
+![image](https://github.com/user-attachments/assets/cbcf5e6f-af2f-4833-9e53-a4b0c2f8f24e)
+
+
 <br>
 
 ## 최종적 Project 보드
+
+![image](https://github.com/user-attachments/assets/b4752566-13c9-4358-9126-ab52fac99684)
+
 
 <br>
 
@@ -58,9 +69,15 @@ Python 환경이 설치된 컴퓨터에서 실행합니다. <br>
 
 ## PR 탭 화면
 
+![image](https://github.com/user-attachments/assets/b49a779b-4167-4e1a-a1a5-4338543856c7)
+
+
 <br>
 
 ## 실행 화면
+
+![image](https://github.com/user-attachments/assets/51979f70-15a8-42be-a493-0f7d4298c1d8)
+
 
 <br>
 

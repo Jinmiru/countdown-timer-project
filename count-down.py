@@ -1,13 +1,11 @@
 import time
 import threading
 
-
 class Timer:
     def __init__(self, total_seconds):
         self.total_seconds = total_seconds
         self.paused = False
         self.running = True
-
 
     def countdown(self):
         print("Press 'p' to pause/resume or 'q' to quit.")
@@ -17,7 +15,7 @@ class Timer:
                 print(f"{mins:02d}:{secs:02d}", end="\r")
                 time.sleep(1)
                 self.total_seconds -= 1
-        if self.total_seconds == 0:
+        if self.running and self.total_seconds == 0:
             print("\nTimer completed!")
 
 def handle_input(timer):
@@ -25,43 +23,35 @@ def handle_input(timer):
         cmd = input().strip().lower()
         if cmd == 'p':
             timer.paused = not timer.paused
+            state = "paused" if timer.paused else "resumed"
+            print(f"\nTimer {state}.")
         elif cmd == 'q':
             timer.running = False
-
-if __name__ == "__main__":
-    total_seconds = int(input("Enter the time in seconds: "))
-    timer = Timer(total_seconds)
-
-    threading.Thread(target=handle_input, args=(timer,), daemon=True).start()
-    timer.countdown()
-
+            print("\nTimer stopped!")
 
 def get_time_input():
     while True:
-        time_input = input("원하는 시간을 '분:초' 또는 '초'로 입력해주세요: ").strip()
+        time_input = input("Enter the time in 'mm:ss' or 'seconds': ").strip()
         try:
             if ":" in time_input:
                 minutes, seconds = map(int, time_input.split(":"))
-                return minutes, seconds
+                if minutes < 0 or seconds < 0:
+                    print("Time cannot be negative. Please try again.")
+                    continue
+                return minutes * 60 + seconds
             else:
                 seconds = int(time_input)
-                return 0, seconds
+                if seconds < 0:
+                    print("Time cannot be negative. Please try again.")
+                    continue
+                return seconds
         except ValueError:
-            print("유효하지 않은 입력입니다. 숫자를 입력해주세요.")
+            print("Invalid input. Please enter time in 'mm:ss' or numeric seconds format.")
 
-# Example usage
-minutes, seconds = get_time_input()
-print(f"Time entered: {minutes} minutes, {seconds} seconds")
+if __name__ == "__main__":
+    total_seconds = get_time_input()
+    timer = Timer(total_seconds)
 
-countdown(int(t))
+    threading.Thread(target=handle_input, args=(timer,), daemon=True).start()
 
-def parse_time_input(time_input):
-    if ":" in time_input:
-        minutes, seconds = map(int, time_input.split(":"))
-        return minutes * 60 + seconds
-    else:
-        return int(time_input)
-
-# Example usage
-time_in_seconds = parse_time_input("2:30")  # "2분 30초"를 초 단위로 변환
-print(f"Time in seconds: {time_in_seconds}")
+    timer.countdown()

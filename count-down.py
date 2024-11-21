@@ -1,4 +1,13 @@
 import time
+import platform
+
+def play_sound():
+    if platform.system() == "Windows":
+        import winsound
+        winsound.Beep(1000, 1000)  # 1kHz 소리를 1초 동안 재생
+    else:
+        print("\a")  # 기본 알림음
+
 import threading
 
 
@@ -35,7 +44,6 @@ if __name__ == "__main__":
     threading.Thread(target=handle_input, args=(timer,), daemon=True).start()
     timer.countdown()
 
-
 def get_time_input():
     while True:
         time_input = input("원하는 시간을 '분:초' 또는 '초'로 입력해주세요: ").strip()
@@ -49,10 +57,6 @@ def get_time_input():
         except ValueError:
             print("유효하지 않은 입력입니다. 숫자를 입력해주세요.")
 
-# Example usage
-minutes, seconds = get_time_input()
-print(f"Time entered: {minutes} minutes, {seconds} seconds")
-
 countdown(int(t))
 
 def parse_time_input(time_input):
@@ -61,7 +65,3 @@ def parse_time_input(time_input):
         return minutes * 60 + seconds
     else:
         return int(time_input)
-
-# Example usage
-time_in_seconds = parse_time_input("2:30")  # "2분 30초"를 초 단위로 변환
-print(f"Time in seconds: {time_in_seconds}")

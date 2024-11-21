@@ -65,3 +65,10 @@ def parse_time_input(time_input):
         return minutes * 60 + seconds
     else:
         return int(time_input)
+
+def parse_time_input(time_input):
+    if ":" in time_input:
+        minutes, seconds = map(int, time_input.split(":"))
+        return minutes * 60 + seconds
+    else:
+        return int(time_input)
